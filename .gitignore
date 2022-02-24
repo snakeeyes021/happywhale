@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# More stuff
+graphs
+*.pickle
+*.hdf5
