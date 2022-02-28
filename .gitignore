@@ -132,3 +132,4 @@ dmypy.json
 graphs
 *.pickle
 *.hdf5
+.vscode
