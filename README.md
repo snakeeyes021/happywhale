@@ -113,7 +113,7 @@ Not specific to species there are some further limitations to the classifier. So
 The anomaly detector has an accuracy of 91%.
 
 ## Deployment and Next Steps
-I've deployed the two models as a simple and user friendly [web app](https://huggingface.co/spaces/snakeeyes021/id-the-seas). Since both models are technically separate, an image that is flagged as an anomaly will still receive a class prediction. This is desired behavior as we would still want a class prediction for false positives from the anomaly detector. The app works on smartphone or computer. Either platform can upload images, but use on a smartphone allows for capturing images with the phone's camera. 
+I've deployed the two models as a simple and user-friendly [web app](https://huggingface.co/spaces/snakeeyes021/id-the-seas). Since both models are technically separate, an image that is flagged as an anomaly will still receive a class prediction. This is desired behavior as we would still want a class prediction for false positives from the anomaly detector. The app works on smartphone or computer. Either platform can upload images, but use on a smartphone allows for capturing images with the phone's camera. 
 ![happywhale app](https://user-images.githubusercontent.com/26641674/157893260-39cd6477-610b-4190-95f5-7132915c120d.png)
 
 Moving forward, building on the work I've done for species identification and applying new techniques and models, such as are common to facial recognition, I'm planning on tackling the individual ID problem. On said problem, my best DenseNet performs 100x better than random guessing, which amounts to an accuracy of a whole 1%, so there's certainly room for improvement! Keep an eye out for additional branches in this repo to that end. 
