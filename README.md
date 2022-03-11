@@ -73,6 +73,7 @@ White-Sided Dolphin
 
 
 ## Evaluation
+![Model Results](https://user-images.githubusercontent.com/26641674/157840178-da41c7b6-1f6b-4685-be3e-0c58dae4b2a8.png)
 
 
 ## Deployment and Next Steps
@@ -89,7 +90,7 @@ White-Sided Dolphin
 
 ├── Presentation.pdf
 
-├── Combined Notebook.ipynb
+├── Final Notebook.ipynb
 
 ├── README.md
 ```
