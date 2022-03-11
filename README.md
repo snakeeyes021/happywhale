@@ -4,7 +4,6 @@ Is it possible to identify whale and dolphin species by looking only at dorsal f
 
 ![flavio-gasperini-gCpr7F7TU7s-unsplash](https://user-images.githubusercontent.com/26641674/157836489-40772f53-1e5a-4deb-b953-9de8bcc7f3db.jpg)
 
-
 ## Overview and Business Understanding
 In the study of marine mammals, the ability to identify individuals or their pods is critical, allowing for population tracking over time and assessment of population trends and statistics. In this domain, there are multiple levels at which one could make meaningful contribution to groups or individuals in the field. 
 
@@ -17,7 +16,7 @@ To that end, Happywhale, a Washington state based research collaboration and cit
 For now, the scope of this project includes only the first problem. However, upon completion, I will likely try my hand at the much more difficult and time-consuming second problem. Keep an eye out for additional branches.
 
 ## The Dataset
-Happywhale has a dataset available as part of a [Kaggle competition](https://www.kaggle.com/c/happy-whale-and-dolphin). The dataset consists of over 50,000 images of whales and dolphins, categorized both by 25 different species and about 15,000 individuals. 
+Happywhale has a dataset available as part of a [Kaggle competition](https://www.kaggle.com/c/happy-whale-and-dolphin). The dataset consists of over 50,000 images of whales and dolphins, categorized both by 25 different species and about 15,000 individuals. The images generally only contain dorsal fins and dorsal ridges.
 
 For anomaly detection, I've also obtained a [miniature subset of the ImageNet dataset](https://www.kaggle.com/ifigotin/imagenetmini-1000), for an extra 35,000 images.
 
@@ -100,11 +99,18 @@ White-Sided Dolphin
 ## Modeling
 There are two independent models in the final web app, a species classifier and an anomaly detector. 
 
-For the species classifier, I began with a basic untuned convolutional neural network as a baseline. I had begun by training on an ImageDataGenerator object, but for the size of the dataset, this consumed immense amounts of time to train, so I let the model train for a single epoch (about 12 hours) and called that my baseline. I switched to using image_dataset_from_directory, which sped up the training time by multiple orders of magnitude. For my subsequent models, I experimented with image input size and color mode, and I also experimented with different regularization strategies to avoid overfitting (L2, dropout, data augmentation, etc.). My final model was a DenseNet121. I began by chopping off the top layer and adding a few of my own, and then continued by loading the pre-trained ImageNet weights and freezing all but my final layers. I then trained and gradually unfroze portions of the model at a time. In the end, this yielded very poor results, so I took the exact opposite approach and trained from scratch with nothing frozen. This was better, but there was still room for improvement. Finally, I loaded the pre-trained weights but froze nothing. This yielded the best results, so I kept it as my final model. 
+For the species classifier, I began with a basic untuned convolutional neural network as a baseline. I had begun by training on an ImageDataGenerator object, but for the size of the dataset, this consumed immense amounts of time to train, so I let the model train for a single epoch (about 12 hours) and called that my baseline. I switched to using image_dataset_from_directory, which sped up the training time by multiple orders of magnitude. For my subsequent models, I experimented with image input size and color mode, and I also experimented with different overfitting avoidance strategies (L2 regularization, dropout, data augmentation, etc.). My final model was a DenseNet121. I began by chopping off the top layer and adding a few of my own, loading the pre-trained ImageNet weights, and freezing all but my final layers. I then trained and gradually unfroze portions of the model at a time. In the end, this yielded very poor results, so I took the exact opposite approach and trained from scratch with nothing frozen. This was better, but there was still room for improvement. Finally, I loaded the pre-trained weights but froze nothing. This yielded the best results, so I kept it as my final species classifier model. 
+
+For the anomaly detector, running short on GPU resources for additional training, I wanted the quickest and simplest rule-based method of anomaly detection that I could come up with, based on the work I had already done. So I took my species classifier model and replaced the final softmax activation with a linear activation to get the log-odds for the different class predictions. Examining the distribution of the log-odds for the Happywhale training dataset as well as the log-odds distribution for the mini-ImageNet dataset, I calculated the mean and standard deviation of each distribution. Then I merely compared the z-scores of a given image against each distribution, and, if the Happywhale z-score for that image was higher than its ImageNet z-score, it was flagged as an anomaly. This yielded very decent results on unseen data, so I kept it as my anomaly detector model.
 
 ## Evaluation
 ![Model Results](https://user-images.githubusercontent.com/26641674/157840178-da41c7b6-1f6b-4685-be3e-0c58dae4b2a8.png)
 
+The final species classifier achieved an accuracy of 96% up from the initial baseline of 54%. The final classifier performs better with species that have distinctive appearances, but it generally does ok with species with less distinctive appearances *as long as they're decently well represented in the training data.* 
+
+Not specific to species there are some further limitations to the classifier. Some of the things that give it trouble are body parts other than dorsal fins, image corruption, badly injured fins, too many additional elements in the frame, subjects appearing too small in the frame, difficult angles, difficult cropping, or multiple individuals in the image. These sorts of issues arise in a significant number of the 4% of incorrectly classified test data. 
+
+The anomaly detector has an accuracy of 91%.
 
 ## Deployment and Next Steps
 
