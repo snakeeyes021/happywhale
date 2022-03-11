@@ -10,9 +10,11 @@ In the study of marine mammals, the ability to identify individuals or their pod
 
 At a more fundamental level, there's the task of species identification. While professional researchers would generally have no problem identifying a particular species at sight, whale watchers, citizen scientists, amateurs, and general marine enthusiasts would almost certainly benefit from quick and easy tools to aid in species ID.
 
-For reasearchers and academics, the holy grail is individual identification. Currently, ID of individual whales and dolphins is performed manually by researchers, comparing multiple photographs side by side, checking for individual shapes and markings with just their own eyes. This is extraordinarily time consuming and not always perfectly accurate. 
+For reasearchers and academics, the holy grail is individual identification. Currently, ID of individual whales and dolphins is performed manually by researchers, comparing multiple photographs side by side, checking for individual shapes and markings with just their own eyes. This is extraordinarily time consuming and not always perfectly accurate. Finding a way to do this faster would save immense amounts of time and resources that could be put to better use elsewhere.
 
-Happywhale, a Washington state based research collaboration and citizen science platform, is seeking partners to develop machine learning models to aid in the process of whale and dolphin ID, with the hope to reduce ID times by over 99%. 
+To that end, Happywhale, a Washington state based research collaboration and citizen science platform, is seeking partners to develop machine learning models to aid in the process of whale and dolphin ID, with the hope to reduce ID times by over 99%. 
+
+For now, the scope of this project includes only the first problem. However, upon completion, I will likely try my hand at the much more difficult and time-consuming second problem. Keep an eye out for additional branches.
 
 ## The Dataset
 Happywhale has a dataset available as part of a [Kaggle competition](https://www.kaggle.com/c/happy-whale-and-dolphin). The dataset consists of over 50,000 images of whales and dolphins, categorized both by 25 different species and about 15,000 individuals. 
@@ -96,7 +98,9 @@ White-Sided Dolphin
 
 
 ## Modeling
+There are two independent models in the final web app, a species classifier and an anomaly detector. 
 
+For the species classifier, I began with a basic untuned convolutional neural network as a baseline. I had begun by training on an ImageDataGenerator object, but for the size of the dataset, this consumed immense amounts of time to train, so I let the model train for a single epoch (about 12 hours) and called that my baseline. I switched to using image_dataset_from_directory, which sped up the training time by multiple orders of magnitude. For my subsequent models, I experimented with image input size and color mode, and I also experimented with different regularization strategies to avoid overfitting (L2, dropout, data augmentation, etc.). My final model was a DenseNet121. I began by chopping off the top layer and adding a few of my own, and then continued by loading the pre-trained ImageNet weights and freezing all but my final layers. I then trained and gradually unfroze portions of the model at a time. In the end, this yielded very poor results, so I took the exact opposite approach and trained from scratch with nothing frozen. This was better, but there was still room for improvement. Finally, I loaded the pre-trained weights but froze nothing. This yielded the best results, so I kept it as my final model. 
 
 ## Evaluation
 ![Model Results](https://user-images.githubusercontent.com/26641674/157840178-da41c7b6-1f6b-4685-be3e-0c58dae4b2a8.png)
