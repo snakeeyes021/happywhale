@@ -114,7 +114,7 @@ Not specific to species there are some further limitations to the classifier. So
 ### The anomaly detector 
 As pointed out above, the anomaly detector has an accuracy of 91%. Here is its confusion matrix:
 <p align="left">
-  <img width="600" src="https://user-images.githubusercontent.com/26641674/157998994-cb37b1ad-2320-4e0d-a9e0-88ef58978d2e.png">
+  <img width="500" src="https://user-images.githubusercontent.com/26641674/158005524-3927bc33-7a70-4d42-b07e-9c4a70cfdbe9.png">
 </p>
 
 ## Deployment and Next Steps
@@ -134,26 +134,22 @@ Models can be downloaded [here](https://drive.google.com/drive/folders/1LQjT3Vik
 
 
 ├── misc_notebooks
-|   ├── H1N1_Flu_Vaccines.csv
-|   ├── model_scoring_dict.pickle
-|   ├── models_dict.pickle
-|   ├── submission_format.csv
-|   ├── test_set_features.csv
-|   ├── training_set_features.csv
-|   ├── training_set_labels.csv
-|   ├── test_set_features.csv
-|   ├── training_set_features.csv
-|   ├── training_set_labels.csv
+|   ├── Final Notebook-Full Training.ipynb
+|   ├── anomaly-detection.ipynb
+|   ├── directory-method.ipynb
+|   ├── image-previews.ipynb
+|   ├── individual_id.ipynb
+|   ├── initial-setup-bak.ipynb
+|   ├── initial-setup-final.ipynb
+|   ├── initial-setup.ipynb
+|   ├── simple-model-train.ipynb
+|   ├── transfer-learning.ipynb
 
 ├── .gitignore
-
 ├── Final Notebook.ipynb
-
 ├── Presentation.pdf
-
 ├── README.md
-
-├── environment.yml
+└── environment.yml
 ```
 ## For more information
 Check out the full [Jupyter notebook](https://github.com/snakeeyes021/happywhale/blob/main/Final%20Notebook.ipynb) (too large too display on Github—must be downloaded) and the [presentation](https://raw.githubusercontent.com/snakeeyes021/happywhale/main/Presentation.pdf).
