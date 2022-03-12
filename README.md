@@ -124,6 +124,12 @@ I've deployed the two models as a simple and user-friendly [web app](https://hug
 Moving forward, building on the work I've done for species identification and applying new techniques and models, such as are common to facial recognition, I'm planning on tackling the individual ID problem. On said problem, my best DenseNet performs 100x better than random guessing, which amounts to an accuracy of a whole 1%, so there's certainly room for improvement! Keep an eye out for additional branches in this repo to that end. 
 
 ## Repository Structure
+**On Reproducibility:** The Conda environment necessary to run this project as is can be found in the main directory of this repo as environment.yml.
+
+**On Models and Data:** Models and data for this project are too large to be stored on GitHub. The dataset can be downloaded [here](https://www.kaggle.com/c/happy-whale-and-dolphin/data) and should be unzipped into a folder called 'data' in the same directory as this notebook. A second dataset for anomaly detection can be found [here](https://www.kaggle.com/ifigotin/imagenetmini-1000) and should be unzipped into 'data/not-whales-or-dolphins' and the folders containing killer whales and grey whales should be deleted (folders n02066245 and n02072394). 
+
+Models can be downloaded [here](https://drive.google.com/drive/folders/1LQjT3ViklSZU469KWLJCW65KBXlwgb6G?usp=sharing) and should be stored in a folder called 'models' in the same directory as this notebook.
+
 ```
 
 
