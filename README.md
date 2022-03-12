@@ -133,16 +133,27 @@ Models can be downloaded [here](https://drive.google.com/drive/folders/1LQjT3Vik
 ```
 
 
-├── data
-
+├── misc_notebooks
+|   ├── H1N1_Flu_Vaccines.csv
+|   ├── model_scoring_dict.pickle
+|   ├── models_dict.pickle
+|   ├── submission_format.csv
+|   ├── test_set_features.csv
+|   ├── training_set_features.csv
+|   ├── training_set_labels.csv
+|   ├── test_set_features.csv
+|   ├── training_set_features.csv
+|   ├── training_set_labels.csv
 
 ├── .gitignore
 
-├── Presentation.pdf
-
 ├── Final Notebook.ipynb
 
+├── Presentation.pdf
+
 ├── README.md
+
+├── environment.yml
 ```
 ## For more information
 Check out the full [Jupyter notebook](https://github.com/snakeeyes021/happywhale/blob/main/Final%20Notebook.ipynb) (too large too display on Github—must be downloaded) and the [presentation](https://raw.githubusercontent.com/snakeeyes021/happywhale/main/Presentation.pdf).
