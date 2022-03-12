@@ -104,13 +104,18 @@ For the species classifier, I began with a basic untuned convolutional neural ne
 For the anomaly detector, running short on GPU resources for additional training, I wanted the quickest and simplest rule-based method of anomaly detection that I could come up with, based on the work I had already done. So I took my species classifier model and replaced the final softmax activation with a linear activation to get the log-odds for the different class predictions. Examining the distribution of the log-odds for the Happywhale training dataset as well as the log-odds distribution for the mini-ImageNet dataset, I calculated the mean and standard deviation of each distribution. Then I merely compared the z-scores of a given image against each distribution, and, if the Happywhale z-score for that image was higher than its ImageNet z-score, it was flagged as an anomaly. This yielded very decent results on unseen data (91% accuracy), so I kept it as my anomaly detector model.
 
 ## Evaluation
+### Best Species Classifier
 ![Model Results](https://user-images.githubusercontent.com/26641674/157840178-da41c7b6-1f6b-4685-be3e-0c58dae4b2a8.png)
 
 The final species classifier achieved an accuracy of 96% up from the initial baseline of 54%. The final classifier performs better with species that have distinctive appearances, but it generally does ok with species with less distinctive appearances *as long as they're decently well represented in the training data.* 
 
 Not specific to species there are some further limitations to the classifier. Some of the things that give it trouble are body parts other than dorsal fins, image corruption, badly injured fins, too many additional elements in the frame, subjects appearing too small in the frame, difficult angles, difficult cropping, or multiple individuals in the image. These sorts of issues arise in a significant number of the 4% of incorrectly classified test data. 
 
-The anomaly detector, as pointed out above, has an accuracy of 91%.
+### The anomaly detector 
+As pointed out above, the anomaly detector has an accuracy of 91%. Here is its confusion matrix:
+<p align="left">
+  <img width="600" src="https://user-images.githubusercontent.com/26641674/157998994-cb37b1ad-2320-4e0d-a9e0-88ef58978d2e.png">
+</p>
 
 ## Deployment and Next Steps
 I've deployed the two models as a simple and user-friendly [web app](https://huggingface.co/spaces/snakeeyes021/id-the-seas). Since both models are technically separate, an image that is flagged as an anomaly will still receive a class prediction. This is desired behavior as we would still want a class prediction for false positives from the anomaly detector. The app works on smartphone or computer. Either platform can upload images, but use on a smartphone allows for capturing images with the phone's camera. 
@@ -134,4 +139,4 @@ Moving forward, building on the work I've done for species identification and ap
 ├── README.md
 ```
 ## For more information
-Check out the full [Jupyter notebook]() and the [presentation](https://github.com/snakeeyes021/happywhale/blob/main/Presentation.pdf).
+Check out the full [Jupyter notebook](https://github.com/snakeeyes021/happywhale/blob/main/Final%20Notebook.ipynb) (too large too display on Github—must be downloaded) and the [presentation](https://raw.githubusercontent.com/snakeeyes021/happywhale/main/Presentation.pdf).
