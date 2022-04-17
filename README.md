@@ -152,4 +152,4 @@ Models can be downloaded [here](https://drive.google.com/drive/folders/1LQjT3Vik
 └── environment.yml
 ```
 ## For more information
-Check out the full [Jupyter notebook](https://github.com/snakeeyes021/happywhale/blob/main/Final%20Notebook.ipynb) (too large too display on Github—must be downloaded) and the [presentation](https://raw.githubusercontent.com/snakeeyes021/happywhale/main/Presentation.pdf).
+Check out the full [Jupyter notebook](https://github.com/snakeeyes021/happywhale/blob/main/Final%20Notebook.ipynb) and the [presentation](https://raw.githubusercontent.com/snakeeyes021/happywhale/main/Presentation.pdf).
