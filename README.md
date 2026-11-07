@@ -1,5 +1,7 @@
 # ID the Seas: Whale and Dolphin Species classification using Convolutional Neural Networks
 
+![Language](https://img.shields.io/badge/Language-Python-blue) ![Framework](https://img.shields.io/badge/Framework-TensorFlow%20%2F%20Keras-orange) ![Platform](https://img.shields.io/badge/Platform-Jupyter%20Notebook-orange)
+
 Is it possible to identify whale and dolphin species by looking only at dorsal fins? I've trained a machine learning model with 96% accuracy to do just that, and deployed it as a user-friendly [web app](https://huggingface.co/spaces/snakeeyes021/id-the-seas) for all to use.
 
 ![flavio-gasperini-gCpr7F7TU7s-unsplash](https://user-images.githubusercontent.com/26641674/157836489-40772f53-1e5a-4deb-b953-9de8bcc7f3db.jpg)
